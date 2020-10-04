@@ -1,7 +1,11 @@
 #include <Windows.h>
 #include <iostream>
+#include "sdk.h"
+#include "MemoryFunctions.h"
 
 HMODULE DllHandle;
+
+std::vector<unsigned> offsetssToPlayerClass = { 0x7c };
 
 
 void CreateConsole()
@@ -16,16 +20,18 @@ void Inject()
 {
 	CreateConsole();
 	std::cout << "injected" << '\n';
+	unsigned baseAddress = reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00;
 
-	
-
-
+	std::cout << baseAddress << '\n';
+	LocalPlayer* Player = reinterpret_cast<LocalPlayer*>(FindAddressByOffsets(baseAddress, offsetssToPlayerClass));
+	std::cout << Player << '\n';
 
 
 	while (!GetAsyncKeyState(VK_F5))
 	{
-		if (GetAsyncKeyState(VK_F6) & 1) {
 
+		if (GetAsyncKeyState(VK_F6) & 1) {
+			std::cout << Player->Coordinates->y << '\n';
 		}
 	}
 
