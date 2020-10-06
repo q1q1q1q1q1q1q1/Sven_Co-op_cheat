@@ -5,34 +5,36 @@
 #include "Cheat.h"
 #include "CheatManager.h"
 
+//Global var
 HMODULE DllHandle;
-
-std::vector<unsigned> offsetssToPlayerClass = { 0x7c };
-
-
-void CreateConsole()
-{
-	AllocConsole();
-	FILE *f;
-	freopen_s(&f, "CONOUT$", "w", stdout);
-}
+std::vector<Cheat> AllCheats;
+CheatManager CM;
 
 
-void Inject()
+
+void MainThread()
 {
 	CreateConsole();
 	std::cout << "injected" << '\n';
-	//unsigned baseAddress = reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00;
+	//!Create teleport cheat;
+	Cheat* teleport;
+	teleport->SetAddressGameClass(reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00, std::vector<unsigned>(0x7c));
+	teleport->SetNameCheat(L"Teleport");
+	teleport->SetKeyActivate(VK_F5);
+	//!End of teleport creation;
+	
 
-	//std::cout << baseAddress << '\n';
-	//CBasePlayer* Player = reinterpret_cast<CBasePlayer*>(FindAddressByOffsets(baseAddress, offsetssToPlayerClass));
-	//std::cout << Player << '\n';
+	// push cheats in global array cheats;
+	AllCheats.push_back(*teleport);
+	//add cheats to ChetManager;
+	CM.AddNewCheats(AllCheats);
 
 
 	while (!GetAsyncKeyState(VK_F5))
 	{
 		
-		if (GetAsyncKeyState(VK_F6) & 1) {
+		if (GetAsyncKeyState(VK_F6) & 1)
+		{
 			
 		}
 	}
@@ -51,7 +53,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 	{
 	case DLL_PROCESS_ATTACH:
 		DllHandle = hModule;
-		CreateThread(NULL, NULL, reinterpret_cast<LPTHREAD_START_ROUTINE>(Inject), hModule, NULL, NULL);
+		CreateThread(NULL, NULL, reinterpret_cast<LPTHREAD_START_ROUTINE>(MainThread), hModule, NULL, NULL);
 
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:

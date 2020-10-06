@@ -9,3 +9,11 @@ unsigned FindAddressByOffsets(unsigned baseAddress, std::vector<unsigned int> of
 	};
 	return *reinterpret_cast<unsigned*>(resultAddress);
 }
+
+
+void CreateConsole()
+{
+	AllocConsole();
+	FILE *f;
+	freopen_s(&f, "CONOUT$", "w", stdout);
+}

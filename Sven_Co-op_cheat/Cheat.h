@@ -1,19 +1,26 @@
 #pragma once
 #include <string>
 #include <Windows.h>
+#include <vector>
+#include "MemoryFunctions.h"
 
 class Cheat
 {
 private:
+	
 	std::wstring nameCheat;
-	std::wstring keyActivate;
+	int keyActivate;
 	bool IsRunning = false;
+	unsigned addressGameClass;
 	
 
 public:
 	void SetNameCheat(std::wstring nameCheat);
-	void SetKeyActivate(std::wstring keyActivate);
+	void SetKeyActivate(int keyActivate);
 	std::wstring GetNameCheat();
-	std::wstring GetKeyActivate();
+	int GetKeyActivate();
+	void SetAddressGameClass(unsigned baseAddr, std::vector<unsigned> offsets);
+	unsigned GetAddressGameClass();
+	void ToggleCheat();
 };
 

@@ -10,7 +10,7 @@ private:
 	bool IsRunning = false;
 
 public:
-	void AddNewCheat(Cheat newCheat);
+	void AddNewCheats(std::vector<Cheat> newCheat);
 	void Start();
 	void Stop();
 };

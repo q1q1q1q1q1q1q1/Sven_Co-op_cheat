@@ -1,8 +1,8 @@
 #include "CheatManager.h"
 
-void CheatManager::AddNewCheat(Cheat newCheat)
+void CheatManager::AddNewCheats(std::vector<Cheat> allCheats)
 {
-	this->Cheats.push_back(newCheat);
+	this->Cheats = allCheats;
 }
 
 void CheatManager::Start()
