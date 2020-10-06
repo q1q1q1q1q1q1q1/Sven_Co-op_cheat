@@ -17,10 +17,10 @@ void MainThread()
 	CreateConsole();
 	std::cout << "injected" << '\n';
 	//!Create teleport cheat;
-	Cheat* teleport;
-	teleport->SetAddressGameClass(reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00, std::vector<unsigned>(0x7c));
-	teleport->SetNameCheat(L"Teleport");
-	teleport->SetKeyActivate(VK_F5);
+	Cheat* teleport = new Cheat;
+	teleport->SetAddressGameClass(reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00, std::vector<unsigned>(0x7c))
+			->SetNameCheat(L"Teleport")
+			->SetKeyActivate(VK_F5);
 	//!End of teleport creation;
 	
 

@@ -1,13 +1,15 @@
 #include "Cheat.h"
 
-void Cheat::SetNameCheat(std::wstring nameCheat)
+Cheat* Cheat::SetNameCheat(std::wstring nameCheat)
 {
 	this->nameCheat = nameCheat;
+	return this;
 }
 
-void Cheat::SetKeyActivate(int keyActivate)
+Cheat* Cheat::SetKeyActivate(int keyActivate)
 {
 	this->keyActivate = keyActivate;
+	return this;
 }
 
 std::wstring Cheat::GetNameCheat()
@@ -20,9 +22,10 @@ int Cheat::GetKeyActivate()
 	return this->keyActivate;
 }
 
-void Cheat::SetAddressGameClass(unsigned baseAddr, std::vector<unsigned> offsets)
+Cheat* Cheat::SetAddressGameClass(unsigned baseAddr, std::vector<unsigned> offsets)
 {
 	this->addressGameClass = FindAddressByOffsets(baseAddr, offsets);
+	return this;
 }
 
 unsigned Cheat::GetAddressGameClass()

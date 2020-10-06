@@ -15,11 +15,11 @@ private:
 	
 
 public:
-	void SetNameCheat(std::wstring nameCheat);
-	void SetKeyActivate(int keyActivate);
+	Cheat* SetNameCheat(std::wstring nameCheat);
+	Cheat* SetKeyActivate(int keyActivate);
 	std::wstring GetNameCheat();
 	int GetKeyActivate();
-	void SetAddressGameClass(unsigned baseAddr, std::vector<unsigned> offsets);
+	Cheat* SetAddressGameClass(unsigned baseAddr, std::vector<unsigned> offsets);
 	unsigned GetAddressGameClass();
 	void ToggleCheat();
 };
