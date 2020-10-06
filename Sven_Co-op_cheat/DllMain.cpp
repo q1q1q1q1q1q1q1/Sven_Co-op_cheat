@@ -2,6 +2,8 @@
 #include <iostream>
 #include "sdk.h"
 #include "MemoryFunctions.h"
+#include "Cheat.h"
+#include "CheatManager.h"
 
 HMODULE DllHandle;
 
@@ -20,23 +22,18 @@ void Inject()
 {
 	CreateConsole();
 	std::cout << "injected" << '\n';
-	unsigned baseAddress = reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00;
+	//unsigned baseAddress = reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00;
 
-	std::cout << baseAddress << '\n';
-	CBasePlayer* Player = reinterpret_cast<CBasePlayer*>(FindAddressByOffsets(baseAddress, offsetssToPlayerClass));
-	std::cout << Player << '\n';
+	//std::cout << baseAddress << '\n';
+	//CBasePlayer* Player = reinterpret_cast<CBasePlayer*>(FindAddressByOffsets(baseAddress, offsetssToPlayerClass));
+	//std::cout << Player << '\n';
 
 
 	while (!GetAsyncKeyState(VK_F5))
 	{
-
+		
 		if (GetAsyncKeyState(VK_F6) & 1) {
-			std::cout << Player->Position->y << '\n';
-			std::cout << Player->Position->x << '\n';
-			std::cout << Player->Position->z << '\n';
-			std::cout << Player->Health << '\n';
-			std::cout << Player->Armor << '\n';
-
+			
 		}
 	}
 
