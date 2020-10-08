@@ -4,3 +4,4 @@
 
 void CreateConsole();
 unsigned FindAddressByOffsets(unsigned baseAddress, std::vector<unsigned int> offsets);
+

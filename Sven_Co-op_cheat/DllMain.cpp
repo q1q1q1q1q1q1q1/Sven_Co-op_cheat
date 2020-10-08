@@ -6,7 +6,7 @@
 #include "CheatManager.h"
 
 //Global var
-HMODULE DllHandle;
+
 std::vector<Cheat> AllCheats;
 CheatManager CM;
 
@@ -14,8 +14,7 @@ CheatManager CM;
 
 void MainThread()
 {
-	CreateConsole();
-	std::cout << "injected" << '\n';
+	
 	//!Create teleport cheat;
 	Cheat* teleport = new Cheat;
 	teleport->SetAddressGameClass(reinterpret_cast<unsigned>(GetModuleHandle(TEXT("hw.dll"))) + 0x0570EE00, std::vector<unsigned>(0x7c))
@@ -28,20 +27,10 @@ void MainThread()
 	AllCheats.push_back(*teleport);
 	//add cheats to ChetManager;
 	CM.AddNewCheats(AllCheats);
+	//start eventloop
+	CM.Start();
 
-
-	while (!GetAsyncKeyState(VK_F5))
-	{
-		
-		if (GetAsyncKeyState(VK_F6) & 1)
-		{
-			
-		}
-	}
-
-	std::cout << "Uninjected" << '\n';
-	FreeConsole();
-	FreeLibraryAndExitThread(DllHandle, 0);
+	
 }
 
 
