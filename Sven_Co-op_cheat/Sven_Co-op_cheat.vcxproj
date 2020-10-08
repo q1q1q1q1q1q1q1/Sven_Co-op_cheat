@@ -125,12 +125,14 @@
   <ItemGroup>
     <ClCompile Include="Cheat.cpp" />
     <ClCompile Include="CheatManager.cpp" />
+    <ClCompile Include="CheatFunctions.cpp" />
     <ClCompile Include="DllMain.cpp" />
     <ClCompile Include="MemoryFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cheat.h" />
     <ClInclude Include="CheatManager.h" />
+    <ClInclude Include="CheatFunctions.h" />
     <ClInclude Include="MemoryFunctions.h" />
     <ClInclude Include="sdk.h" />
   </ItemGroup>
