@@ -3,8 +3,11 @@
 
 void CheatManager::EventLoop()
 {
-	while (true) {
-
+	while (this->IsRunning) {
+		for (auto cheat : this->Cheats) 
+		{
+			if (GetAsyncKeyState(cheat.GetKeyActivate)) cheat.ToggleCheat();
+		}
 	}
 }
 
@@ -17,8 +20,6 @@ void CheatManager::Start()
 {
 	this->IsRunning = true;
 	EventLoop();
-	FreeConsole();
-	FreeLibraryAndExitThread(DllHandle, 0);
 }
 
 void CheatManager::Stop()
