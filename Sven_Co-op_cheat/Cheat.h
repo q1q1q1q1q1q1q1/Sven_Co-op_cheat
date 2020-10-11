@@ -10,11 +10,11 @@ private:
 	
 	std::wstring nameCheat;
 	int keyActivate;
-	bool IsRunning = false;
-	unsigned addressGameClass;
 	
 
 public:
+	unsigned addressGameClass;
+	bool IsRunning = false;
 	Cheat* SetNameCheat(std::wstring nameCheat);
 	Cheat* SetKeyActivate(int keyActivate);
 	std::wstring GetNameCheat();
